@@ -8,18 +8,19 @@ import java.io.IOException;
 
 /**
  * Created by Víctor Martínez on 1/29/2017 at 4:43 PM.
+ * Description: class that has different methods to read text files
  */
 
 
-public class MyFileReader {
-    
-    public MyFileReader(){
+public class MyFileReader { //StartClass
+
+    public MyFileReader(){ //StartMethod
         
     }
-    
-    public List readNumbersFromFile(String fileName){
+
+	public List readNumbersFromFile(String fileName){ //StartMethod
         BufferedReader br = null;
-	FileReader fr = null;
+	    FileReader fr = null;
         List list = new List();
 
 		try {
@@ -57,5 +58,7 @@ public class MyFileReader {
 
     }
           return list;      
-    }
-}
+    }//End Method
+
+
+}//EndClass

@@ -2,13 +2,14 @@ package Program1.collections;
 
 /**
  * Created by Víctor Martínez on 1/29/2017 at 4:43 PM.
+ * Description: class to create a dynamic list
  */
 
-public class List {
+public class List { //StartClass
     
     private Node head;
 
-    public List() {
+    public List() { //StartMethod
         
         head = null;
         
@@ -16,7 +17,7 @@ public class List {
     
     //Methods
             //Insert a node at any position of the list
-            public void add(int position, double data)
+            public void add(int position, double data) //StartMethod
             {
                 if (position <= size() + 1)
                 {
@@ -54,7 +55,7 @@ public class List {
             //End of insertAt method
             
                         //Insert a node at the end of the list
-            public void addLast(double data)
+            public void addLast(double data) //StartMethod
             {
             Node temporalNode;
             Node newNode = new Node() ;
@@ -81,7 +82,7 @@ public class List {
             //End of insertLastMethod 
             
                         //Remove the first node of the list
-            public double removeFirst()
+            public double removeFirst() //StartMethod
             {
                 double data;
             if (head != null)
@@ -94,9 +95,10 @@ public class List {
                
                 
             }
+            //End of removeFirstMethod
             
   //Gives the size of the list as an integer
-            public int size()
+            public int size() //StartMethod
             {
                 int Size = 0;
                 Node temporalNode = head;
@@ -113,11 +115,11 @@ public class List {
             public Boolean empty()
             {
                 return head == null;
-            }
+            } //StartMethod
             //End of empty method
             
                         //Print the list
-            public void print()
+            public void print() //StartMethod
             {
                 Node temporalNode = head;
                 System.out.println("Printing list");
@@ -128,4 +130,4 @@ public class List {
                 }
             }
         //End of print method
-}
+}//EndClass

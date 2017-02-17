@@ -4,34 +4,35 @@ package Program1.math;
 import Program1.collections.List;
 
 /**
- * Created by Víctor Martínez on 1/29/2017 at 4:43 PM.
+ * Created by Víctor Martínez on 1/29/2017 at 4:43.
+ * Description: class used to make math calculations
  */
 
-public class Calculator {
+public class Calculator {//StartClass
     
     private double mean;
     private double standardDeviation;
 
-    public Calculator() {
-    }
+    public Calculator() {//StartMethod
+    }//EndMethod
 
-    public double getMean() {
+    public double getMean() {//StartMethod
         return mean;
-    }
+    }//EndMethod
 
-    public void setMean(double mean) {
+    public void setMean(double mean) {//StartMethod
         this.mean = mean;
-    }
+    }//EndMethod
 
-    public double getStandardDeviation() {
+    public double getStandardDeviation() {//StartMethod
         return standardDeviation;
-    }
+    }//EndMethod
 
-    public void setStandardDeviation(double standardDeviation) {
+    public void setStandardDeviation(double standardDeviation) {//StartMethod
         this.standardDeviation = standardDeviation;
-    }
+    }//EndMethod
     
-    public void calculateMean(List list){
+    public void calculateMean(List list){//StartMethod
         double total=0;
         int n=0;
         
@@ -42,9 +43,9 @@ public class Calculator {
         
         this.setMean(total/n);
         
-    }
+    }//EndMethod
     
-    public void calculateStandardDeviation(List list){
+    public void calculateStandardDeviation(List list){//StartMethod
         
         double summation=0;
         double n = list.size();
@@ -55,6 +56,6 @@ public class Calculator {
         
         this.standardDeviation=Math.sqrt(summation/(n-1));
        
-    }
+    }//EndMethod
     
-}
+}//EndClass
