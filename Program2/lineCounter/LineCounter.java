@@ -9,8 +9,9 @@ import java.util.LinkedList;
 
 /**
  * Created by Víctor Martínez on 2/16/2017 at 6:02 PM.
- * Description: class that counts lines of code of a program
+ * Description: counts lines of code of a program
  */
+//Added
 public class LineCounter {//StartClass
 
     private int numberOfMethods; //The number of methods of a class
@@ -23,6 +24,12 @@ public class LineCounter {//StartClass
     private int indexOfClass; //Used to know which number of class we are working with
     private int linesOfClass; //The number of lines of the class to insert in the list linesPerClass
     private int methodsOfClass; //The number of methods of the class to insert in the list methodsPerClass
+    private int addedLines;
+    private int reusedLines;
+    private int modifiedLines;
+    private int baseLines;
+    private String typeOfLine;
+
 
     public LineCounter() {//StartMethod
         this.numberOfClasses=0;
@@ -35,6 +42,11 @@ public class LineCounter {//StartClass
         this.indexOfClass=0;
         this.linesOfClass=0;
         this.methodsOfClass=0;
+        this.addedLines=0;
+        this.reusedLines=0;
+        this.modifiedLines=0;
+        this.baseLines=0;
+        this.typeOfLine="added";
     }
 
     public int getNumberOfMethods() {//StartMethod
@@ -109,9 +121,58 @@ public class LineCounter {//StartClass
         this.fileName = fileName;
     }//EndMethod
 
-//Counts the logical lines of the file
-    public void countLines(){//StartMethod
+    public int getMethodsOfClass() {
+        return methodsOfClass;
+    }
 
+    public void setMethodsOfClass(int methodsOfClass) {
+        this.methodsOfClass = methodsOfClass;
+    }
+
+    public int getAddedLines() {
+        return addedLines;
+    }
+
+    public void setAddedLines(int addedLines) {
+        this.addedLines = addedLines;
+    }
+
+    public int getReusedLines() {
+        return reusedLines;
+    }
+
+    public void setReusedLines(int reusedLines) {
+        this.reusedLines = reusedLines;
+    }
+
+    public int getModifiedLines() {
+        return modifiedLines;
+    }
+
+    public void setModifiedLines(int modifiedLines) {
+        this.modifiedLines = modifiedLines;
+    }
+
+    public int getBaseLines() {
+        return baseLines;
+    }
+
+    public void setBaseLines(int baseLines) {
+        this.baseLines = baseLines;
+    }
+
+    public String getTypeOfLine() {
+        return typeOfLine;
+    }
+
+    public void setTypeOfLine(String typeOfLine) {
+        this.typeOfLine = typeOfLine;
+    }
+
+    //Counts the logical lines of the file
+    public void countLines(){//StartMethod
+//Added
+        //Reused
         BufferedReader br = null;
         FileReader fr = null;
         List list = new List();
@@ -148,7 +209,8 @@ public class LineCounter {//StartClass
                 ex.printStackTrace();
 
             }
-
+            //Reused
+            //Added
         }
 
     }//EndMethod
@@ -156,9 +218,26 @@ public class LineCounter {//StartClass
 //Checks if the lines is going to be counted or not
     public void classifyLine(String line) {//StartMethod
 
-      if (line.length() == 0) {
+
+        if (line.length() == 0) {
           return;
        }
+
+        if (line.contains("//Base")) {
+            typeOfLine="base";
+        }
+
+        if (line.contains("//Added")) {
+            typeOfLine="added";
+        }
+
+        if (line.contains("//Reused")) {
+            typeOfLine="reused";
+        }
+
+        if (line.contains("//Modified")) {
+            typeOfLine="modified";
+        }
 
         if (line.contains("//Start"+"Class")) {
             nameOfClasses.add(line.trim());
@@ -191,10 +270,24 @@ public class LineCounter {//StartClass
            line.contains("private") ||
            line.contains("public") ||
            line.contains("class") ||
-           line.contains("+") ||
+                line.contains("void") ||
+                line.contains("static") ||
+                line.contains("+") ||
            line.contains("=") ||
            line.contains(";")
                 ){
+            if(typeOfLine.equals("base")){
+                this.baseLines++;
+            }
+            if(typeOfLine.equals("added")){
+                this.addedLines++;
+            }
+            if(typeOfLine.equals("reused")){
+                this.reusedLines++;
+            }
+            if(typeOfLine.equals("modified")){
+                this.modifiedLines++;
+            }
             this.totalOfLines++;
             this.linesPerClass.add(indexOfClass, ++linesOfClass);
         }
@@ -206,8 +299,13 @@ public class LineCounter {//StartClass
             System.out.println("Number of methods: "+methodPerClass.get(i));
             System.out.println("Lines of code: "+linesPerClass.get(i));
         }
+        System.out.println("Base lines: "+this.baseLines);
+        System.out.println("Added lines: "+this.addedLines);
+        System.out.println("Reused lines: "+this.reusedLines);
+        System.out.println("Modified lines: "+this.modifiedLines);
         System.out.println("Total size of program: "+this.totalOfLines);
 
     }//EndMethod
 
 }//EndClass
+//Added

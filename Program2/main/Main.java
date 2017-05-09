@@ -4,15 +4,15 @@ import Program2.lineCounter.LineCounter;
 
 /**
  * Created by Víctor Martínez on 2/16/2017 at 6:07 PM.
- * Description: class used to run PSP program 2
+ * Description: used to run PSP program 2
  */
-//Executes PSP program 2
+//Added
 public class Main {//StartClass
 
     public static void main (String args[]){//StartMethod
 
         LineCounter lineCounter = new LineCounter();
-        lineCounter.setFileName("C:\\Users\\Victor\\Desktop\\Program2.java");
+        lineCounter.setFileName("C:\\Users\\Victor\\Desktop\\test.txt");
         lineCounter.countLines();
         lineCounter.print();
 

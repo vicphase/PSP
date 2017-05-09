@@ -1,9 +1,11 @@
+//Reused
 package Program1.collections;
 
 /**
  * Created by Víctor Martínez on 1/29/2017 at 4:43 PM.
- * Description: class to create a dynamic list
+ * Description: used to create a dynamic list
  */
+
 
 public class List { //StartClass
     
@@ -58,7 +60,7 @@ public class List { //StartClass
             public void addLast(double data) //StartMethod
             {
             Node temporalNode;
-            Node newNode = new Node() ;
+            Node newNode = new Node();
             newNode.setData(data);
             newNode.setNext(null);
                 //Empty List
@@ -79,7 +81,28 @@ public class List { //StartClass
                     newNode.setNext(null);
                 }
             }
-            //End of insertLastMethod 
+            //End of insertLastMethod
+
+    //Added
+    public Node getAt(int position){//StartMethod
+        if(position <=size()){
+            Node information;
+            if(position==1){
+                information = head;
+            }else{
+                Node temporalNode;
+                temporalNode = head;
+                for (int f = 1 ; f <= position - 2 ; f++)
+                    temporalNode = temporalNode.getNext();
+                Node nextNode = temporalNode.getNext();
+                information = nextNode;
+            }
+            return information;
+        }else
+            return null;
+
+    }
+    //Reused
             
                         //Remove the first node of the list
             public double removeFirst() //StartMethod
@@ -92,7 +115,6 @@ public class List { //StartClass
                 return data;
             }
             else return 0;
-               
                 
             }
             //End of removeFirstMethod

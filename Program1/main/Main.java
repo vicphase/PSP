@@ -6,9 +6,9 @@ import Program1.math.Calculator;
 
 /**
  * Created by Víctor Martínez on 1/29/2017 at 4:43 PM.
- * Description: class used to run PSP program 1
+ * Description: run PSP program 1
  */
-
+//Added
 public class Main {//StartClass
 
     /**
@@ -30,3 +30,4 @@ public class Main {//StartClass
     }//EndMethod
     
 }//EndClass
+//Added

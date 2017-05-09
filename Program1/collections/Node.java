@@ -1,8 +1,9 @@
+//Reused
 package Program1.collections;
 
 /**
  * Created by Víctor Martínez on 1/29/2017 at 4:43 PM.
- * Description: class used to store data to create dynamic lists
+ * Description: used to store data to create dynamic lists
  */
 
 
