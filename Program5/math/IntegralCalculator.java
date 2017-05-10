@@ -1,8 +1,10 @@
-//Added
+//Base
 package Program5.math;
 
+//Added
 import static java.lang.StrictMath.abs;
 
+//Base
 /**
  * Created by Víctor Martínez on 5/2/2017 at 6:07 PM.
  * Description:
@@ -15,10 +17,13 @@ public class IntegralCalculator { //StartClass
     private double W;
     private double E;
     private double p;
+    //Added
+    private double d;
 
+    //Base
     public IntegralCalculator() { //StartMethod
         setNum_seg(10);
-        setE(.00001);
+        setE(0.0000000000001);
     }
 
     public double getX() { //StartMethod
@@ -68,6 +73,16 @@ public class IntegralCalculator { //StartClass
     public void setP(double p) { //StartMethod
         this.p = p;
     }
+    //Added
+
+    public double getD() { //StartMethod
+        return d;
+    }
+
+    public void setD(double d) {//StartMethod
+        this.d = d;
+    }
+    //Base
 
     public double calculateP(){ //StartMethod
         double newP=0;
@@ -105,8 +120,6 @@ public class IntegralCalculator { //StartClass
       return  (gamma((getDof()+1)/2) / (Math.sqrt(getDof()*Math.PI)*gamma(getDof()/2))) * Math.pow(1+(Math.pow(x,2)/getDof()),-(getDof()+1)/2);
     }
 
-
-
     public static double logGamma(double x) { //StartMethod
         double tmp = (x - 0.5) * Math.log(x + 4.5) - (x + 4.5);
         double ser = 1.0 + 76.18009173    / (x + 0)   - 86.50532033    / (x + 1)
@@ -119,34 +132,35 @@ public class IntegralCalculator { //StartClass
         return Math.exp(logGamma(x));
     }
 
-    public void calculateUpperLimitOfIntegration(){
+    //Added
+    public void calculateUpperLimitOfIntegration() { //StartMethod
         //Start with a trial value of x (for example 1)
-        setX(1);
-        double temporalP,error;
+        setX(1.0);
+        setD(0.5);
+        double temporalP, error;
         temporalP = calculateP();
-        error=temporalP-getP();
-        while((abs(error)>getE())) {
+        do {
+            if(getP()<temporalP && temporalP>getP()){
+                setD(getD()/2);
+            }
             //Make an initial integral and test to see if it gives the proper value; if not, continue.
             temporalP = calculateP();
-            error=temporalP-getP();
-                //IF P is too low
-            if((abs(error)>getE())){
+            error = getP() - temporalP;
+            //IF P is too low
+            if ((abs(error) >= getE())) {
                 if (temporalP < getP()) {
-                    setX(getX() + (getX() / 2.0));
+                    setX(getX() + getD());
                 } else {
                     //IF P is too high
                     if (temporalP > getP()) {
-                        setX(getX() - (getX() / 2.0));
+                        setX(getX() - getD());
                     }
                 }
             }
-           // System.out.println(temporalP + " " + getX() + " " + (temporalP - getP()));
-            }
-
-            }
-
-
-
+          //  System.out.println(temporalP + " " + getX() + " " + (temporalP - getP()));
+        } while ((abs(error) >= getE()) && temporalP != getP());
+    }
+    //Base
     @Override
     public String toString() { //StartMethod
         return "IntegralCalculator{" + '\n'+
