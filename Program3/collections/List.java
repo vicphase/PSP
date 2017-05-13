@@ -1,28 +1,20 @@
-//Base
+//Reused
 package Program3.collections;
-
-
 /**
  * Created by Víctor Martínez on 1/29/2017 at 4:43 PM.
  * Description: used to create a dynamic list
  */
-
-
 public class List { //StartClass
 
     private Node head;
 
     public List() { //StartMethod
-
         head = null;
-
     }
 
     //Methods
     //Insert a node at any position of the list
-    //Added
-    public void add(int position, double number1, double number2) //StartMethod
-    {
+    public void add(int position, double number1, double number2){ //StartMethod
         if (position <= size() + 1) {
             Node newNode = new Node();
             newNode.setNumber1(number1);
@@ -77,7 +69,6 @@ public class List { //StartClass
     }
     //End of insertLastMethod
 
-//Base
     //Remove the first node of the list
     public Node getFirst() { //StartMethod
         if (head != null) {
@@ -104,7 +95,6 @@ public class List { //StartClass
         return null;
 
     }
-
 
   //Gives the size of the list as an integer
             public int size() //StartMethod

@@ -1,4 +1,4 @@
-//Reused
+//Base
 package Program1.collections;
 
 /**
@@ -83,7 +83,6 @@ public class List { //StartClass
             }
             //End of insertLastMethod
 
-    //Added
     public Node getAt(int position){//StartMethod
         if(position <=size()){
             Node information;
@@ -102,7 +101,6 @@ public class List { //StartClass
             return null;
 
     }
-    //Reused
             
                         //Remove the first node of the list
             public double removeFirst() //StartMethod
@@ -150,6 +148,18 @@ public class List { //StartClass
                     System.out.println(temporalNode.getData() + '\n');
                     temporalNode = temporalNode.getNext();
                 }
+            }
+
+            //Added
+            public String toString(){
+             String string="";
+                Node temporalNode = head;
+                while (temporalNode != null)
+                {
+                    string+=temporalNode.getData() + " - ";
+                    temporalNode = temporalNode.getNext();
+                }
+                return string;
             }
         //End of print method
 }//EndClass

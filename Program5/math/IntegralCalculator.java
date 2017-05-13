@@ -1,10 +1,8 @@
-//Base
+//Reused
 package Program5.math;
 
-//Added
 import static java.lang.StrictMath.abs;
 
-//Base
 /**
  * Created by Víctor Martínez on 5/2/2017 at 6:07 PM.
  * Description:
@@ -17,13 +15,11 @@ public class IntegralCalculator { //StartClass
     private double W;
     private double E;
     private double p;
-    //Added
     private double d;
 
-    //Base
     public IntegralCalculator() { //StartMethod
         setNum_seg(10);
-        setE(0.0000000000001);
+        setE(0.000000000001);
     }
 
     public double getX() { //StartMethod
@@ -73,7 +69,6 @@ public class IntegralCalculator { //StartClass
     public void setP(double p) { //StartMethod
         this.p = p;
     }
-    //Added
 
     public double getD() { //StartMethod
         return d;
@@ -82,14 +77,13 @@ public class IntegralCalculator { //StartClass
     public void setD(double d) {//StartMethod
         this.d = d;
     }
-    //Base
 
     public double calculateP(){ //StartMethod
         double newP=0;
         double oldP=Integer.MAX_VALUE;
         while(oldP-newP>getE()){
             oldP=integrate();
-            setNum_seg(getNum_seg()+10);
+            setNum_seg(getNum_seg()+100);
             newP=integrate();
         }
         return newP;
@@ -132,9 +126,7 @@ public class IntegralCalculator { //StartClass
         return Math.exp(logGamma(x));
     }
 
-    //Added
-    public void calculateUpperLimitOfIntegration() { //StartMethod
-        //Start with a trial value of x (for example 1)
+    public void calculateUpperLimitOfIntegration() {//StartMethod
         setX(1.0);
         setD(0.5);
         double temporalP, error;
@@ -157,10 +149,9 @@ public class IntegralCalculator { //StartClass
                     }
                 }
             }
-          //  System.out.println(temporalP + " " + getX() + " " + (temporalP - getP()));
         } while ((abs(error) >= getE()) && temporalP != getP());
     }
-    //Base
+
     @Override
     public String toString() { //StartMethod
         return "IntegralCalculator{" + '\n'+
@@ -172,5 +163,6 @@ public class IntegralCalculator { //StartClass
                 ", p=" + p + '\n'+
                 '}';
     }
+
 }
 //EndClass

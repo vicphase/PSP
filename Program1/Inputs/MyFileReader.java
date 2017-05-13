@@ -57,7 +57,7 @@ public class MyFileReader { //StartClass
 
     }
           return list;      
-    }//End Method
+    }
 
 	public Program3.collections.List readTwoNumbersFromFile(String fileName){ //StartMethod
 		BufferedReader br = null;
@@ -102,7 +102,6 @@ public class MyFileReader { //StartClass
 		return list;
 	}
 
-	//Added
 	public List readNumbersAndDivide(String fileName){ //StartMethod
 		BufferedReader br = null;
 		FileReader fr = null;
@@ -144,5 +143,48 @@ public class MyFileReader { //StartClass
 
 		}
 		return list;
-	}//End Method
+	}
+
+	//Added
+	public List readNumbersFromFileAt(String fileName, int position){
+		BufferedReader br = null;
+		FileReader fr = null;
+		List list = new List();
+		try {
+
+			fr = new FileReader(fileName);
+			br = new BufferedReader(fr);
+
+			String sCurrentLine;
+
+			br = new BufferedReader(new FileReader(fileName));
+			while ((sCurrentLine = br.readLine()) != null) {
+				String[] strs = sCurrentLine.trim().split(" ");
+				list.addLast(Double.parseDouble(strs[position]));
+			}
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try {
+
+				if (br != null)
+					br.close();
+
+				if (fr != null)
+					fr.close();
+
+			} catch (IOException ex) {
+
+				ex.printStackTrace();
+
+			}
+
+		}
+		return list;
+	}
+
 }//EndClass

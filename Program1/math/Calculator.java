@@ -2,8 +2,6 @@
 package Program1.math;
 import Program1.collections.List;
 import Program3.collections.Node;
-
-
 /**
  * Created by Víctor Martínez on 1/29/2017 at 4:43.
  * Description: make math calculations
@@ -19,23 +17,23 @@ public class Calculator {//StartClass
     private double estimateyk;
 
     public Calculator() {//StartMethod
-    }//EndMethod
+    }
 
     public double getMean() {//StartMethod
         return mean;
-    }//EndMethod
+    }
 
     public void setMean(double mean) {//StartMethod
         this.mean = mean;
-    }//EndMethod
+    }
 
     public double getStandardDeviation() {//StartMethod
         return standardDeviation;
-    }//EndMethod
+    }
 
     public void setStandardDeviation(double standardDeviation) {//StartMethod
         this.standardDeviation = standardDeviation;
-    }//EndMethod
+    }
 
     public double getLinearRegressionB0() {//StartMethod
         return linearRegressionB0;
@@ -80,15 +78,25 @@ public class Calculator {//StartClass
     public double calculateMean(List list){//StartMethod
         double total=0;
         int n=0;
-        
+
         while(!list.empty()){
             total+=list.removeFirst();
-                    n++;
+            n++;
         }
         this.setMean(total/n);
         return(total/n);
-        
+
     }//EndMethod
+
+    public double calculateMeanConservingList(List list){//StartMethod
+        double total=0;
+        
+        for(int i=0;i<=list.size();i++)
+            total+=list.getAt(i).getData();
+        this.setMean(total/list.size());
+        return(total/list.size());
+        
+    }
     
     public void calculateStandardDeviation(List list){//StartMethod
         
@@ -101,7 +109,7 @@ public class Calculator {//StartClass
         
         this.standardDeviation=Math.sqrt(summation/(n-1));
        
-    }//EndMethod
+    }
 
     public void calculateLinearRegressionB1(Program3.collections.List list){//StartMethod
         double summation=0; //First operation
@@ -235,7 +243,6 @@ public class Calculator {//StartClass
         this.setEstimateyk(answer);
     }
 
-    //Added
     public double calculateLogaritmicMean(List list){//StartMethod
         double total=0;
         int n=0;
@@ -253,7 +260,28 @@ public class Calculator {//StartClass
         }
         return summation/(list.size()-1);
     }
-//Base
+
+    //Added
+    public double summatory(List list1, List list2, int pow){
+        double sum=0;
+        if(list2==null){
+           for(int i=1;i<=list1.size();i++)
+               sum+=Math.pow(list1.getAt(i).getData(),pow);
+        }else{
+            for(int i=1;i<=list1.size();i++)
+                sum+=Math.pow(list1.getAt(i).getData()*list2.getAt(i).getData(),pow);
+        }
+      return sum;
+    }
+
+    public double summatoryMinusAverageSquare(List list, double average){
+        double sum = 0;
+        for(int i=1;i<=list.size();i++)
+            sum+=Math.pow(list.getAt(i).getData()-average,2);
+        return sum;
+    }
+
+    //Base
     @Override
     public String toString() {
         return "Calculator{" +
